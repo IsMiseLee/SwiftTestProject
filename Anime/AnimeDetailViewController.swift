@@ -9,16 +9,35 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class AnimeDetailViewController: UICollectionViewController {
+class AnimeDetailViewController: UIViewController {
+        
+    
+    var animeData : anime?
 
+    @IBOutlet weak var titleFeild: UILabel!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var scoreId: UITextField!
+   
+    @IBOutlet weak var descId: UITextView!
+    
+    @IBOutlet weak var ratingId: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        titleFeild.text = animeData?.title
+        descId.text = animeData?.synopsis
+        if let s =  animeData?.score {
+            ratingId.text = "Score : \(s)"
+        }
+        let url = URL(string: animeData?.image_url ?? "")
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        self.image?.image = UIImage(data: data!)
+        self.image?.contentMode = .scaleAspectFit
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    
 
         // Do any additional setup after loading the view.
     }
@@ -35,25 +54,7 @@ class AnimeDetailViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
-        return cell
-    }
-
+ 
     // MARK: UICollectionViewDelegate
 
     /*
