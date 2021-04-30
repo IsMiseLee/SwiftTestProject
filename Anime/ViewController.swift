@@ -100,15 +100,14 @@ extension ViewController :UITextFieldDelegate{
     }
 }
 
-struct Results: Codable{
-    let last_page:Int?
-    let request_cache_expiry:Int?
-    let request_cached:Bool?
-    let request_hash:String?
-    let results : [anime]
+    struct Results: Codable{
+        let last_page:Int?
+        let request_cache_expiry:Int?
+        let request_cached:Bool?
+        let request_hash:String?
+        let results : [anime]
     
-}
-
+    }
     struct anime: Codable{
         let mal_id: Int?
         let url:String?
